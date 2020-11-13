@@ -1,0 +1,34 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+#
+# See https://github.com/r-lib/actions/tree/master/examples#readme for
+# additional example workflows available for the R community.
+
+name: R
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        r-version: [4.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.r-version }}
+      - name: Run
+        run: Rscript analysis.R
+      - name: Checksum
+        run: if [ `md5sum rnkIA14Oct20byCounty.csv | cut -d ' ' -f 1` == "720e1503fd8e4ebd1d3ac391de4615f3" ] ; then exit 0 ; else exit 1 ; fi
