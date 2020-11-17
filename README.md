@@ -69,7 +69,7 @@ characteristics:
   1. It should be a CSV file using the comma (`,`) as column separator.
   2. It should have the following line as first (column header) line:
      ```
-     "COUNTY";"IA14Oct"
+     "COUNTY","IA14Oct"
      ```
   3. The second and following lines should contain the names of counties
      and the value of their mean accumulated incidence per 100,000 inhabitants
