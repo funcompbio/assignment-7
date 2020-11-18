@@ -28,7 +28,11 @@ jobs:
         uses: r-lib/actions/setup-r@v1
         with:
           r-version: ${{ matrix.r-version }}
-      - name: Run
+      - name: Checksum comarques_setmanal.csv
+        run: if [ `md5sum comarques_setmanal.csv | cut -d ' ' -f 1` == "d8d4a3ffa2cd0e7bbb3b03f8b5b3cdf1" ] ; then exit 0 ; else { echo wrong comarques_setmanal.csv file ; exit 1 ; } ; fi
+      - name: Run analysis.R
         run: Rscript analysis.R
-      - name: Checksum
-        run: if [ `md5sum rnkIA14Oct20byCounty.csv | cut -d ' ' -f 1` == "720e1503fd8e4ebd1d3ac391de4615f3" ] ; then exit 0 ; else exit 1 ; fi
+      - name: Check results file rnkIA14Oct20byCounty.csv
+        run: if [ -e rnkIA14Oct20byCounty.csv ] ; then exit 0 ; else { echo missing results file rnkIA14Oct20byCounty.csv ; exit 1 ; } ; fi
+      - name: Checksum rnkIA14Oct20byCounty.csv
+        run: if [ `md5sum rnkIA14Oct20byCounty.csv | cut -d ' ' -f 1` == "d95a746e4511b0741fc50acb829e7861" ] ; then exit 0 ; else exit 1 ; fi

@@ -24,30 +24,26 @@ assignment will have a penalty.
 The goal of this assignment is to **calculate a ranking of Catalan counties
 based on the mean accumulated incidence of COVID19 infections by 100,000 inhabitants
 for the month of October derived from the general population**. To achieve this goal
-you should follow these 3 steps:
+you should follow these 2 steps:
 
-  1. Go to the Catalan Health Departament COVID data portal at
-   [https://dadescovid.cat](https://dadescovid.cat) and follow the
-   downloads link. Click and download the CSV file corresponding to
-   the "7 DAY AGGREGATION" for "COUNTIES". **Add the CSV file to
-   your local GitHub repo of the assignment**.
-
-  2. Create an R script called `analysis.R` with the R commands that
-  read the CSV file and make the necesssary transformations and
+  1. Create an R script called `analysis.R` with the R commands that
+  read the CSV file `comarques_setmanal.csv` **provided in the repo
+  of the assignment** and make the necesssary transformations and
   calculations to obtain a `data.frame` object of the ranking whose
-  first lines look like this:
+  first lines look like this (round numerical results to one decimal
+  point using the function `round()`):
 
   ```
-             COUNTY  IA14Oct 
-  1           OSONA 974.0764
-  2         SEGARRA 868.0518
-  3 PLA DE L'ESTANY 848.9957
-  4       GARRIGUES 848.3926
-  5         GIRONES 765.8695
-  6       BAIX CAMP 728.8895
+             COUNTY IA14Oct 
+  1           OSONA   974.7
+  2         SEGARRA   868.4
+  3 PLA DE L'ESTANY   849.2
+  4       GARRIGUES   848.4
+  5         GIRONES   767.1
+  6       BAIX CAMP   731.4
   ```
 
-  3. Let the `data.frame` object of the ranking be called `rnk`,
+  2. Let the `data.frame` object of the ranking be called `rnk`,
   the last line of your script should write to disk that ranking
   into a CSV file called `rnkIA14Oct20byCounty.csv` with the
   following R command:
@@ -78,7 +74,7 @@ characteristics:
      from geriatric residences**. For instance, one such lines could look
      like this one:
      ```
-     "SEGRIA",441.657325806452
+     "SEGRIA",442.8
      ```
   4. The second and following lines should be stored in descending order
      of the second column, corresponding to the mean accumulated incidence
